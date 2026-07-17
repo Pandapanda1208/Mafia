@@ -526,3 +526,17 @@ elif globals()['jester_won'] == True:
 else:
     print("The ending requirments was triggered, but can't determine who won. Sorry.")
     input()
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
