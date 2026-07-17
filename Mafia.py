@@ -447,11 +447,12 @@ def morning():
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
+globals()['hide_role'] = "null"
 
 
 
 while globals()['mafia_won'] == False and globals()['citizens_won'] == False and globals()['jester_won'] == False:
-    os.system('cls' if os.name == 'nt' else clear)
+    os.system('cls' if os.name == 'nt' else 'clear')
     globals()['nights'] += 1
     print("Night " + str(globals()['nights']) + " has fallen, and the mafia member(s) have woken to kill someone...")
     input()
