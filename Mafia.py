@@ -1,6 +1,5 @@
 import os
 import shutil
-import random
 
 globals()['red'] = '\033[91m'
 globals()['green'] = '\033[32m'
@@ -13,20 +12,18 @@ globals()['cyan'] = '\033[36m'
 globals()['reset'] = '\033[0m'
 
 class player:
-    def __init__(self, name, role, alive, dead_count, found_dead, role_disquise, number):
+    def __init__(self, name, role, alive, dead_count, found_dead, role_disquise):
         self.name = name
         self.role = role
         self.alive = alive
         self.dead_count = dead_count
         self.found_dead = found_dead
         self.role_disquise = role_disquise
-        self.number = number
 
 globals()['number_of_players'] = int(input("How many people are playing? "))
-globals()['player_number'] = globals()['number_of_players']
 
 for i in range(globals()['number_of_players']):
-    globals()[f"player{i + 1}"] = player(input(f"What is player{i + 1}'s name? "), "citizen", True, False, False, "citizen", i)
+    globals()[f"player{i + 1}"] = player(input(f"What is player{i + 1}'s name? "), "citizen", True, False, False, "citizen")
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -48,31 +45,8 @@ globals()['doctor_number'] = int(input('How many doctors are there? '))
 globals()['detective_number'] = int(input('How many detectives are there? '))
 globals()['vigilante_number'] = int(input('How many vigilantes are there? '))
 globals()['jester_number'] = int(input("How many jesters are there? "))
-globals()['ignore_doctor_a'] = input("Does the vigilante ignore the doctor?(y/n) ")
-if globals()['ignore_doctor_a'] == "y":
-    globals()['ignore_doctor'] = True
-else:
-    globals()['ignore_doctor'] = False 
 
 os.system('cls' if os.name == 'nt' else 'clear')
-
-# for j in range(globals()['mafia_number']):
-#     mafias_num = random.randint(1, globals()['number_of_players'])
-#     mafia_check = 0
-#     while mafia_check == 0:
-#         for i in range(globals()['number_of_players']):
-#             if globals()[f'player{i + 1}'].number == mafias_num:
-#                 globals()[f'player{i + 1}'].role = "mafia"
-#                 globals()[f'player{i + 1}'].role_disguise = "mafia"
-# for j in range(globals()['boss_number']):
-#     bosses_num = random.randint(1, globals()['number_of_players'])
-#     bosses_check = 0
-#     while bosses_check == 0:
-#         for i in range(globals()['number_of_players']):
-#             if globals()[f'player{i + 1}'].number == bosses_num:
-#                 globals()[f'player{i + 1}'].role = "mafia boss"
-#                 globals()[f'player{i + 1}'].role_disguise = "citizen"
-
 
 for i in range(globals()['number_of_players']):
     print(globals()[f'player{i + 1}'].name)
@@ -227,47 +201,47 @@ def show_players():
     if globals()['mafia_members'] != 0:
         print(globals()['red'] + "Mafai Members:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "mafia" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "mafia" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['red'] + globals()[f'player{i + 1}'].name + globals()['reset'] + " ", end="")
         print()
     if globals()['mafia_bosses'] != 0:
         print(globals()['dark_red'] + "Mafia Bosses:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "mafia boss" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "Mafia Boss" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['dark_red'] + globals()[f'player{i + 1}'].name + globals()['reset'])
     if globals()['framers'] != 0:
         print(globals()['brick_red'] + "Framers:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "framer" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "framer" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['brick_red'] + globals()[f'player{i + 1}'].name + globals()['reset'])
     if globals()['doctors'] != 0:
         print(globals()['blue'] + "Doctors:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "doctor" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "doctor" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['blue'] + globals()[f'player{i + 1}'].name + globals()['reset'] + " ", end="")
         print()
     if globals()['detectives'] != 0:
         print(globals()['yellow'] + "Detectives:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "detective" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "detective" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['yellow'] + globals()[f'player{i + 1}'].name + globals()['reset'] + " ", end="")
         print()
     if globals()['vigilantes'] != 0:
         print(globals()['purple'] + "Vigilantes:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "vigilante" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "vigilante" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['purple'] + globals()[f'player{i + 1}'].name + globals()['reset'] + " ", end="")
         print()
     if globals()['jesters'] != 0:
         print(globals()['cyan'] + "Jesters:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "jester":
+            if globals()[f'player{i + 1}'].role == "jester":
                 print(globals()['cyan'] + globals()[f'player{i + 1}'].name + globals()['reset'], end="")
         print()
     if globals()['townspeople'] != 0:
         print(globals()['green'] + "Townspeople:" + globals()['reset'])
         for i in range(globals()['number_of_players']):
-            if globals()[f'player{i + 1}'].role.lower() == "citizen" and globals()[f'player{i + 1}'].alive != False:
+            if globals()[f'player{i + 1}'].role == "citizen" and globals()[f'player{i + 1}'].alive != False:
                 print(globals()['green'] + globals()[f'player{i + 1}'].name + globals()['reset'] + " ", end='')
         print()
 
@@ -526,17 +500,3 @@ elif globals()['jester_won'] == True:
 else:
     print("The ending requirments was triggered, but can't determine who won. Sorry.")
     input()
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
